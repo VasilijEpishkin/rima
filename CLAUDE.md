@@ -108,7 +108,7 @@ B5 compare vs ground truth (identity, CDR3, V/J calls)
 - **Project:** `cs-poc-eat9v8av8rsg0ahe0t75icw`
 - **Bucket:** `bioinformatics4` (US multi-region)
 - **VM:** `bcr-analysis-vm` — e2-standard-8, 200GB pd-ssd, us-central1-a
-- **Service Account:** `healthos@...` key at `~/Downloads/cs-poc-eat9v8av8rsg0ahe0t75icw-e2b53034a982.json`
+- **Service Account:** `healthos@...` key **NOT FOUND** in ~/Downloads/ (was: `cs-poc-eat9v8av8rsg0ahe0t75icw-e2b53034a982.json`). Need to upload or locate key to enable bucket operations beyond listing.
 - **Access:** IAP SSH tunnel only (no external IP per org policy)
 - **NAT:** `bcr-router/bcr-nat` created for PyPI/GitHub access
 
@@ -116,21 +116,54 @@ B5 compare vs ground truth (identity, CDR3, V/J calls)
 
 ## VM Tool Stack (bcr-analysis-vm)
 
-**Installed:** FastQC, fastp, TRUST4, IgReC, InSilicoSeq, Biopython, pRESTO, MultiQC
+**Installed:** FastQC, fastp, TRUST4, InSilicoSeq, Biopython, pRESTO, MultiQC. Также установлены базовые системные утилиты, `bowtie2`, `samtools`.
 
-**Pending:** SHazaM (install was running in background, check `~/shazam_install.log`)
+**Installed (verified 2026-07-07):**
+|- IgReC: **✅ Завершено** (бинарные файлы в `~/ig_repertoire_constructor/build/release/bin/`)
+|- SHazaM / Immcantation (R): shazam, alakazam, scoper, tigger, Biostrings, GenomicAlignments, IRanges, BiocManager — **✅ установлены**.
+|- **dowser ❌ НЕ установлен** — единственный незавершённый R-пакет (филогения клонов; не критичен для Stage A1–A7).
+---
 
-**Conda envs:** `bcr-sim` has TRUST4/IGBLAST pre-installed
+## Active Issues
+
+1. **SA-ключ GCP недоступен** — требуется загрузить `cs-poc-eat9v8av8rsg0ahe0t75icw-e2b53034a982.json` в ~/Downloads/ (или устранить ссылку в lib/gcs.py).
+2. **dowser (R)** — единственный незавершённый R-пакет из Immcantation. Поставить (`BiocManager::install("dowser")`), если нужна клониальная филогения. Лог `~/shazam_install.log` отсутствует — установка шла без него.
+3. **VM running** — costs ~$144/month, stop if not needed
+4. **R-доступное место:** /usr/local/lib/R/site-library не writable; установка пакетов будет требовать sudo или другого lib-пути. Опытная работа ожидается при возобновлении установки BiocManager.
 
 ---
 
-## Key Files
+## Completed (as of 2026-07-07)
 
-| Path | Purpose |
-|------|---------|
-| `lib/gcs.py` | Bucket client helper (reads SA key + bucket name) |
-| `lib/ena_to_gcs.py` | Streams ENA fastq.gz to bucket, skips existing, retries |
-| `.env` | NVIDIA_API_KEY for BioNeMo NIM |
+1. ✅ All 4 datasets downloaded to GCS (~30 GiB)
+2. ✅ VM `bcr-analysis-vm` created with tools installed
+3. ✅ Cloud NAT `bcr-nat` created for external access
+4. ✅ TRUST4 собран (`~/TRUST4/run-trust4`)
+5. ✅ IgReC собран (`~/ig_repertoire_constructor/build/release/bin/*.o` -> binaries)
+6. ✅ Основные системные инструменты установлены (FastQC, fastp, bowtie2, samtools, multiqc, InSilicoSeq)
+7. ✅ Python-среда готова (presto, google-cloud-storage, biopython, requests, python-dotenv)
+8. ✅ Memory transferred from old session
+9. ✅ MCP servers configured (gitnexus, tavily, bioinformatics, fff, serena)
+10. ✅ QC (FastQC+MultiQC) выполнен для всех 4 датасетов — human, horse, sheep, **macaque** — отчёты в `results/multiqc/`
+11. ✅ fff/serena/token-optimizer перерегистрированы в `~/.claude.json` (раньше были только в `settings.json`, который Claude Code для MCP не читает) — активны после рестарта Claude Code
+
+---
+
+## Upcoming
+
+1. **Stage A** — запустить IgReC/BioInformatics на одном наборе данных (PRJEB40348) и записать результаты в GCS.
+2. ~~SHazaM~~ — R-пакеты доступны (кроме dowser). Готов запуск Stage A5–A7 (IgReC → IgQUAST → SHM profile).
+3. **Дизайн Stage B** — синтезирование данных, решение недостающего SA-ключа для записи.
+4. **Обеспечение доступа к Sa-key для некоторых bucket операций (чтение/запись) если требуется.
+
+---
+
+## Credential / Security Rules
+
+- **NEVER write API keys in Bash args** — visible in `ps` and shell history
+- **GCP SA key** — Put the key `cs-poc-eat9v8av8rsg0ahe0t75icw-e2b53034a982.json` в ~/Downloads/
+- **NVIDIA API key** — in `.env` (NVIDIA_API_KEY)
+
 | `.mcp.json` | Project MCP servers (gitnexus, tavily, bioinformatics, fff, serena) |
 | `memory/MEMORY.md` | Memory index |
 | `memory/project_bcr_benchmark.md` | Full project state |
