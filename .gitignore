@@ -1,0 +1,7 @@
+results/
+
+# Large raw sequencing data (do not commit; lives in GCS)
+data/
+
+# Local secrets (already tracked — see history; ignored to prevent future re-adds)
+.env

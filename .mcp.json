@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "bioinformatics": {
+      "command": "uvx",
+      "args": ["--from", "bioinformatics-mcp-server", "bioinformatics-server"],
+      "description": "Bioinformatics tools for BCR/TCR analysis"
+    }
+  }
+}
