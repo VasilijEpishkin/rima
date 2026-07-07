@@ -1,0 +1,9 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SRR19646177_1	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646177_1_fastqc.zip
+FastQC	all_sections	SRR19646177_2	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646177_2_fastqc.zip
+FastQC	all_sections	SRR19646178_1	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646178_1_fastqc.zip
+FastQC	all_sections	SRR19646178_2	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646178_2_fastqc.zip
+FastQC	all_sections	SRR19646179_1	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646179_1_fastqc.zip
+FastQC	all_sections	SRR19646179_2	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646179_2_fastqc.zip
+FastQC	all_sections	SRR19646180_1	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646180_1_fastqc.zip
+FastQC	all_sections	SRR19646180_2	/home/sa_110818210310663084911/results/fastqc_PRJNA848968/SRR19646180_2_fastqc.zip
