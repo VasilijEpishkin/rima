@@ -1,4 +1,3 @@
-results/
 
 # Large raw sequencing data (do not commit; lives in GCS)
 data/
