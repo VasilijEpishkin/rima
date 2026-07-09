@@ -408,5 +408,5 @@
 		"overrepresented_sequences": {
 		}
 	},
-	"command": "fastp -i /home/sa_110818210310663084911/data/PRJEB40348/ERR4588263_1.fastq.gz -I /home/sa_110818210310663084911/data/PRJEB40348/ERR4588263_2.fastq.gz -o /home/sa_110818210310663084911/results/qc_trim_pipeline/trim/ERR4588263_1.trim.fastq.gz -O /home/sa_110818210310663084911/results/qc_trim_pipeline/trim/ERR4588263_2.trim.fastq.gz --detect_adapter_for_pe -q 30 -l 250 -w 8 -h /home/sa_110818210310663084911/results/qc_trim_pipeline/fastp_reports/ERR4588263.html -j /home/sa_110818210310663084911/results/qc_trim_pipeline/fastp_reports/ERR4588263.json "
+	"command": "fastp -i ~/data/PRJEB40348/ERR4588263_1.fastq.gz -I ~/data/PRJEB40348/ERR4588263_2.fastq.gz -o /home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/trim/ERR4588263_1.trim.fastq.gz -O /home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/trim/ERR4588263_2.trim.fastq.gz --detect_adapter_for_pe -q 30 -l 250 -w 8 -h /home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/fastp_reports/ERR4588263.html -j /home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/fastp_reports/ERR4588263.json "
 }
