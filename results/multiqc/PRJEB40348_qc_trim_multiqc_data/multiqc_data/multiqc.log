@@ -1,139 +1,65 @@
-[2026-07-09 08:49:08,724] root                                               [DEBUG  ]  Logging to file: /tmp/tmpwo0kne9j/multiqc.log
-[2026-07-09 08:49:08,725] multiqc.core.update_config                         [DEBUG  ]  This is MultiQC v1.35
-[2026-07-09 08:49:08,725] multiqc.core.update_config                         [DEBUG  ]  Running Python 3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]
-[2026-07-09 08:49:08,729] urllib3.connectionpool                             [DEBUG  ]  Starting new HTTPS connection (1): api.multiqc.info:443
-[2026-07-09 08:49:09,111] urllib3.connectionpool                             [DEBUG  ]  https://api.multiqc.info:443 "GET /version?version_multiqc=1.35&version_python=3.11.2&operating_system=Linux&is_docker=False&is_singularity=False&is_conda=False&is_uv=False&is_ci=False&is_notebook=False&ai_summary=False&ai_summary_full=False&ai_provider=seqera HTTP/1.1" 200 178
-[2026-07-09 08:49:09,114] multiqc.core.version_check                         [DEBUG  ]  Latest MultiQC version is v1.35, released 2026-05-13
-[2026-07-09 08:49:09,114] multiqc.multiqc                                    [DEBUG  ]  Working dir : /home/sa_110818210310663084911/results/qc_trim_pipeline
-[2026-07-09 08:49:09,114] multiqc.multiqc                                    [DEBUG  ]  Template    : default
-[2026-07-09 08:49:09,115] multiqc.multiqc                                    [DEBUG  ]  Command used: /home/sa_110818210310663084911/.local/lib/python3.11/site-packages/multiqc/__main__.py /home/sa_110818210310663084911/results/qc_trim_pipeline/qc_raw /home/sa_110818210310663084911/results/qc_trim_pipeline/qc_trimmed -o /home/sa_110818210310663084911/results/qc_trim_pipeline/multiqc -f
-[2026-07-09 08:49:09,115] multiqc.core.file_search                           [INFO   ]  Search path: /home/sa_110818210310663084911/results/qc_trim_pipeline/qc_raw
-[2026-07-09 08:49:09,115] multiqc.core.file_search                           [INFO   ]  Search path: /home/sa_110818210310663084911/results/qc_trim_pipeline/qc_trimmed
-[2026-07-09 08:49:09,116] multiqc.core.file_search                           [DEBUG  ]  Analysing modules: bases2fastq, cellranger_arc, cells2stats, deacon, hicstuff, hifi_trimmer, methurator, ribotish, ribowaltz, riker, seqkit, sompy, xenium, custom_content, ccs, ngsderive, purple, conpair, isoseq, lima, peddy, percolator, haplocheck, somalier, methylqa, mosdepth, phantompeakqualtools, qualimap, bamdst, preseq, hifiasm, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, checkm, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, glimpse, gopeaks, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featurecounts, fgbio, dragen, dragen_fastqc, dedup, pbmarkdup, damageprofiler, mapdamage, biobambam2, jcvi, mtnucratio, picard, vep, bakta, prokka, checkm2, qc3C, nanoq, nanostat, samblaster, samtools, bamtools, sambamba, ngsbits, pairtools, sexdeterrmine, seqera_cli, eigenstratdatabasetools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, umicollapse, umitools, truvari, megahit, sincei, ganon, gtdbtk, bbmap, bismark, biscuit, diamond, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, hostile, cellranger, checkatlas, snpsplit, odgi, vg, pangolin, nextclade, freyja, humid, kat, leehom, librarian, nonpareil, adapterremoval, bbduk, clipandmerge, cutadapt, trim_galore, flexbar, sourmash, kaiju, kraken, malt, motus, trimmomatic, sickle, skewer, sortmerna, biobloomtools, seqfu, fastq_screen, fastqe, afterqc, fastp, fastqc, sequali, filtlong, prinseqplusplus, pychopper, porechop, pycoqc, minionqc, anglerfish, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap, spaceranger, xenome, xengsort, metaphlan, sylphtax, seqwho, telseq, ataqv, mgikit, mosaicatcher, software_versions
-[2026-07-09 08:49:09,116] multiqc.core.file_search                           [DEBUG  ]  Search keys: adapterremoval, afterqc, anglerfish, ataqv, bakta, bamdst, bamtools, bases2fastq, bbduk, bbmap, bcftools, bcl2fastq, bclconvert, biobambam2, biobloomtools, biscuit, bismark, bowtie1, bowtie2, busco, bustools, ccs, cellranger, cellranger_arc, cells2stats, checkatlas, checkm, checkm2, checkqc, clipandmerge, clusterflow, conpair, custom_content, cutadapt, damageprofiler, deacon, dedup, deeptools, diamond, disambiguate, dragen, dragen_fastqc, eigenstratdatabasetools, fastp, fastq_screen, fastqc, fastqe, featurecounts, fgbio, filtlong, flash, flexbar, freyja, ganon, gatk, gffcompare, glimpse, goleft_indexcov, gopeaks, gtdbtk, haplocheck, happy, hicexplorer, hicpro, hicstuff, hicup, hifi_trimmer, hifiasm, hisat2, homer, hops, hostile, htseq, humid, interop, isoseq, ivar, jcvi, jellyfish, kaiju, kallisto, kat, kraken, leehom, librarian, lima, longranger, macs2, malt, mapdamage, megahit, metaphlan, methurator, methylqa, mgikit, minionqc, mirtop, mirtrace, mosaicatcher, mosdepth, motus, mtnucratio, multiqc_data, multivcfanalyzer, nanoq, nanostat, nextclade, ngsbits, ngsderive, nonpareil, odgi, optitype, pairtools, pangolin, pbmarkdup, peddy, percolator, phantompeakqualtools, picard, porechop, preseq, prinseqplusplus, prokka, purple, pychopper, pycoqc, qc3C, qorts, qualimap, quast, ribotish, ribowaltz, riker, rna_seqc, rockhopper, rsem, rseqc, salmon, sambamba, samblaster, samtools, sargasso, seqera_cli, seqfu, seqkit, sequali, seqwho, seqyclean, sexdeterrmine, sickle, sincei, skewer, slamdunk, snippy, snpeff, snpsplit, software_versions, somalier, sompy, sortmerna, sourmash, spaceranger, stacks, star, supernova, sylphtax, telseq, theta2, tophat, trim_galore, trimmomatic, truvari, umicollapse, umitools, varscan2, vcftools, vep, verifybamid, vg, whatshap, xengsort, xenium, xenome
-[2026-07-09 08:49:11,936] multiqc.report                                     [DEBUG  ]  Summary of files that were skipped by the search: |skipped_module_specific_max_filesize: 140|, |skipped_no_match: 140|
-[2026-07-09 08:49:11,939] multiqc.core.exec_modules                          [DEBUG  ]  Running module: custom_content
-[2026-07-09 08:49:11,942] multiqc.core.exec_modules                          [DEBUG  ]  No samples found: custom_content
-[2026-07-09 08:49:11,942] multiqc.core.exec_modules                          [DEBUG  ]  Running module: fastqc
-[2026-07-09 08:49:11,959] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588253_1.trim_fastqc.zip' as already parsed 'ERR4588253_1'
-[2026-07-09 08:49:11,963] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588253_2.trim_fastqc.zip' as already parsed 'ERR4588253_2'
-[2026-07-09 08:49:11,967] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588254_1.trim_fastqc.zip' as already parsed 'ERR4588254_1'
-[2026-07-09 08:49:11,971] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588254_2.trim_fastqc.zip' as already parsed 'ERR4588254_2'
-[2026-07-09 08:49:11,975] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588255_1.trim_fastqc.zip' as already parsed 'ERR4588255_1'
-[2026-07-09 08:49:11,979] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588255_2.trim_fastqc.zip' as already parsed 'ERR4588255_2'
-[2026-07-09 08:49:11,983] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588256_1.trim_fastqc.zip' as already parsed 'ERR4588256_1'
-[2026-07-09 08:49:11,987] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588256_2.trim_fastqc.zip' as already parsed 'ERR4588256_2'
-[2026-07-09 08:49:11,992] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588257_1.trim_fastqc.zip' as already parsed 'ERR4588257_1'
-[2026-07-09 08:49:11,997] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588257_2.trim_fastqc.zip' as already parsed 'ERR4588257_2'
-[2026-07-09 08:49:12,001] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588258_1.trim_fastqc.zip' as already parsed 'ERR4588258_1'
-[2026-07-09 08:49:12,005] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588258_2.trim_fastqc.zip' as already parsed 'ERR4588258_2'
-[2026-07-09 08:49:12,009] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588259_1.trim_fastqc.zip' as already parsed 'ERR4588259_1'
-[2026-07-09 08:49:12,014] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588259_2.trim_fastqc.zip' as already parsed 'ERR4588259_2'
-[2026-07-09 08:49:12,018] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588260_1.trim_fastqc.zip' as already parsed 'ERR4588260_1'
-[2026-07-09 08:49:12,022] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588260_2.trim_fastqc.zip' as already parsed 'ERR4588260_2'
-[2026-07-09 08:49:12,075] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588261_1.trim_fastqc.zip' as already parsed 'ERR4588261_1'
-[2026-07-09 08:49:12,080] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588261_2.trim_fastqc.zip' as already parsed 'ERR4588261_2'
-[2026-07-09 08:49:12,085] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588262_1.trim_fastqc.zip' as already parsed 'ERR4588262_1'
-[2026-07-09 08:49:12,089] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588262_2.trim_fastqc.zip' as already parsed 'ERR4588262_2'
-[2026-07-09 08:49:12,093] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588263_1.trim_fastqc.zip' as already parsed 'ERR4588263_1'
-[2026-07-09 08:49:12,097] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588263_2.trim_fastqc.zip' as already parsed 'ERR4588263_2'
-[2026-07-09 08:49:12,102] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588264_1.trim_fastqc.zip' as already parsed 'ERR4588264_1'
-[2026-07-09 08:49:12,106] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588264_2.trim_fastqc.zip' as already parsed 'ERR4588264_2'
-[2026-07-09 08:49:12,110] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588265_1.trim_fastqc.zip' as already parsed 'ERR4588265_1'
-[2026-07-09 08:49:12,114] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588265_2.trim_fastqc.zip' as already parsed 'ERR4588265_2'
-[2026-07-09 08:49:12,118] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588266_1.trim_fastqc.zip' as already parsed 'ERR4588266_1'
-[2026-07-09 08:49:12,122] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588266_2.trim_fastqc.zip' as already parsed 'ERR4588266_2'
-[2026-07-09 08:49:12,126] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588267_1.trim_fastqc.zip' as already parsed 'ERR4588267_1'
-[2026-07-09 08:49:12,130] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588267_2.trim_fastqc.zip' as already parsed 'ERR4588267_2'
-[2026-07-09 08:49:12,135] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588268_1.trim_fastqc.zip' as already parsed 'ERR4588268_1'
-[2026-07-09 08:49:12,139] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588268_2.trim_fastqc.zip' as already parsed 'ERR4588268_2'
-[2026-07-09 08:49:12,143] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588269_1.trim_fastqc.zip' as already parsed 'ERR4588269_1'
-[2026-07-09 08:49:12,147] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588269_2.trim_fastqc.zip' as already parsed 'ERR4588269_2'
-[2026-07-09 08:49:12,151] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588270_1.trim_fastqc.zip' as already parsed 'ERR4588270_1'
-[2026-07-09 08:49:12,155] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588270_2.trim_fastqc.zip' as already parsed 'ERR4588270_2'
-[2026-07-09 08:49:12,159] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588271_1.trim_fastqc.zip' as already parsed 'ERR4588271_1'
-[2026-07-09 08:49:12,163] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588271_2.trim_fastqc.zip' as already parsed 'ERR4588271_2'
-[2026-07-09 08:49:12,168] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588272_1.trim_fastqc.zip' as already parsed 'ERR4588272_1'
-[2026-07-09 08:49:12,172] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588272_2.trim_fastqc.zip' as already parsed 'ERR4588272_2'
-[2026-07-09 08:49:12,176] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588273_1.trim_fastqc.zip' as already parsed 'ERR4588273_1'
-[2026-07-09 08:49:12,180] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588273_2.trim_fastqc.zip' as already parsed 'ERR4588273_2'
-[2026-07-09 08:49:12,184] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588274_1.trim_fastqc.zip' as already parsed 'ERR4588274_1'
-[2026-07-09 08:49:12,189] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588274_2.trim_fastqc.zip' as already parsed 'ERR4588274_2'
-[2026-07-09 08:49:12,193] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588275_1.trim_fastqc.zip' as already parsed 'ERR4588275_1'
-[2026-07-09 08:49:12,198] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588275_2.trim_fastqc.zip' as already parsed 'ERR4588275_2'
-[2026-07-09 08:49:12,203] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588276_1.trim_fastqc.zip' as already parsed 'ERR4588276_1'
-[2026-07-09 08:49:12,207] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588276_2.trim_fastqc.zip' as already parsed 'ERR4588276_2'
-[2026-07-09 08:49:12,211] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588277_1.trim_fastqc.zip' as already parsed 'ERR4588277_1'
-[2026-07-09 08:49:12,215] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588277_2.trim_fastqc.zip' as already parsed 'ERR4588277_2'
-[2026-07-09 08:49:12,219] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588278_1.trim_fastqc.zip' as already parsed 'ERR4588278_1'
-[2026-07-09 08:49:12,223] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588278_2.trim_fastqc.zip' as already parsed 'ERR4588278_2'
-[2026-07-09 08:49:12,227] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588279_1.trim_fastqc.zip' as already parsed 'ERR4588279_1'
-[2026-07-09 08:49:12,231] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588279_2.trim_fastqc.zip' as already parsed 'ERR4588279_2'
-[2026-07-09 08:49:12,235] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588280_1.trim_fastqc.zip' as already parsed 'ERR4588280_1'
-[2026-07-09 08:49:12,239] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588280_2.trim_fastqc.zip' as already parsed 'ERR4588280_2'
-[2026-07-09 08:49:12,243] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588281_1.trim_fastqc.zip' as already parsed 'ERR4588281_1'
-[2026-07-09 08:49:12,247] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588281_2.trim_fastqc.zip' as already parsed 'ERR4588281_2'
-[2026-07-09 08:49:12,251] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588282_1.trim_fastqc.zip' as already parsed 'ERR4588282_1'
-[2026-07-09 08:49:12,255] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588282_2.trim_fastqc.zip' as already parsed 'ERR4588282_2'
-[2026-07-09 08:49:12,260] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588283_1.trim_fastqc.zip' as already parsed 'ERR4588283_1'
-[2026-07-09 08:49:12,264] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588283_2.trim_fastqc.zip' as already parsed 'ERR4588283_2'
-[2026-07-09 08:49:12,268] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588284_1.trim_fastqc.zip' as already parsed 'ERR4588284_1'
-[2026-07-09 08:49:12,272] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588284_2.trim_fastqc.zip' as already parsed 'ERR4588284_2'
-[2026-07-09 08:49:12,277] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588285_1.trim_fastqc.zip' as already parsed 'ERR4588285_1'
-[2026-07-09 08:49:12,281] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588285_2.trim_fastqc.zip' as already parsed 'ERR4588285_2'
-[2026-07-09 08:49:12,285] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588286_1.trim_fastqc.zip' as already parsed 'ERR4588286_1'
-[2026-07-09 08:49:12,288] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588286_2.trim_fastqc.zip' as already parsed 'ERR4588286_2'
-[2026-07-09 08:49:12,292] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588287_1.trim_fastqc.zip' as already parsed 'ERR4588287_1'
-[2026-07-09 08:49:12,296] multiqc.modules.fastqc.fastqc                      [DEBUG  ]  Skipping 'ERR4588287_2.trim_fastqc.zip' as already parsed 'ERR4588287_2'
-[2026-07-09 08:49:12,296] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 70 reports
-[2026-07-09 08:49:12,326] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_counts_plot: found old_data = False
-[2026-07-09 08:49:12,326] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_counts_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,414] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_sequence_quality_plot: found old_data = False
-[2026-07-09 08:49:12,414] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_sequence_quality_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,442] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_quality_scores_plot: found old_data = False
-[2026-07-09 08:49:12,442] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_quality_scores_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,577] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_gc_content_plot: found old_data = False
-[2026-07-09 08:49:12,577] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_gc_content_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,625] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_n_content_plot: found old_data = False
-[2026-07-09 08:49:12,625] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_n_content_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,647] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_length_distribution_plot: found old_data = False
-[2026-07-09 08:49:12,647] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_length_distribution_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,664] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_duplication_levels_plot: found old_data = False
-[2026-07-09 08:49:12,665] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_duplication_levels_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,678] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_overrepresented_sequences_plot: found old_data = False
-[2026-07-09 08:49:12,678] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_overrepresented_sequences_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,688] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_top_overrepresented_sequences_table: found old_data = False
-[2026-07-09 08:49:12,688] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_top_overrepresented_sequences_table: no old data or empty, using new data only
-[2026-07-09 08:49:12,714] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_adapter_content_plot: found old_data = False
-[2026-07-09 08:49:12,714] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_adapter_content_plot: no old data or empty, using new data only
-[2026-07-09 08:49:12,727] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc-status-check-heatmap: found old_data = False
-[2026-07-09 08:49:12,727] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc-status-check-heatmap: no old data or empty, using new data only
-[2026-07-09 08:49:12,755] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_fastqc.txt
-[2026-07-09 08:49:12,757] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_fastqc.json
-[2026-07-09 08:49:12,760] multiqc.base_module                                [DEBUG  ]  fastqc: deleting attribute self.order_of_duplication_levels
-[2026-07-09 08:49:12,760] multiqc.base_module                                [DEBUG  ]  fastqc: deleting attribute self.status_colours
-[2026-07-09 08:49:12,760] multiqc.core.software_versions                     [DEBUG  ]  Reading software versions from config.software_versions
-[2026-07-09 08:49:12,762] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_software_versions.txt
-[2026-07-09 08:49:12,762] multiqc.core.write_results                         [DEBUG  ]  Rendering plots
-[2026-07-09 08:49:12,855] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for general_stats_table: found old_data = False
-[2026-07-09 08:49:12,855] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for general_stats_table: no old data or empty, using new data only
-[2026-07-09 08:49:12,895] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_general_stats.txt
-[2026-07-09 08:49:12,896] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_general_stats.json
-[2026-07-09 08:49:12,931] multiqc.core.ai                                    [DEBUG  ]  Saved AI prompt to multiqc_data/llms-full.txt
-[2026-07-09 08:49:12,932] multiqc.core.write_results                         [DEBUG  ]  Exporting plot data to files
-[2026-07-09 08:49:12,932] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_sequence_counts_plot.txt
-[2026-07-09 08:49:12,940] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_base_sequence_quality_plot.txt
-[2026-07-09 08:49:12,943] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_sequence_quality_scores_plot.txt
-[2026-07-09 08:49:12,954] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_sequence_gc_content_plot_Percentages.txt
-[2026-07-09 08:49:12,964] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_sequence_gc_content_plot_Counts.txt
-[2026-07-09 08:49:12,970] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_base_n_content_plot.txt
-[2026-07-09 08:49:12,973] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_sequence_length_distribution_plot.txt
-[2026-07-09 08:49:12,975] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_sequence_duplication_levels_plot.txt
-[2026-07-09 08:49:12,975] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_overrepresented_sequences_plot.txt
-[2026-07-09 08:49:12,975] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_top_overrepresented_sequences_table.txt
-[2026-07-09 08:49:12,980] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_adapter_content_plot.txt
-[2026-07-09 08:49:12,981] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc-status-check-heatmap.txt
-[2026-07-09 08:49:12,981] multiqc.core.write_results                         [DEBUG  ]  Moving data file from '/tmp/tmpwo0kne9j/multiqc_data' to '/home/sa_110818210310663084911/results/qc_trim_pipeline/multiqc/multiqc_data'
-[2026-07-09 08:49:13,307] multiqc.core.write_results                         [INFO   ]  Data        : multiqc/multiqc_data
-[2026-07-09 08:49:13,334] multiqc.core.write_results                         [DEBUG  ]  Compressing plot data
-[2026-07-09 08:49:13,593] multiqc.core.write_results                         [INFO   ]  Report      : multiqc/multiqc_report.html
+[2026-07-09 11:37:53,998] root                                               [DEBUG  ]  Logging to file: /tmp/tmpq5f02r9s/multiqc.log
+[2026-07-09 11:37:53,999] multiqc.core.update_config                         [DEBUG  ]  This is MultiQC v1.35
+[2026-07-09 11:37:53,999] multiqc.core.update_config                         [DEBUG  ]  Running Python 3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]
+[2026-07-09 11:37:54,001] urllib3.connectionpool                             [DEBUG  ]  Starting new HTTPS connection (1): api.multiqc.info:443
+[2026-07-09 11:37:54,392] urllib3.connectionpool                             [DEBUG  ]  https://api.multiqc.info:443 "GET /version?version_multiqc=1.35&version_python=3.11.2&operating_system=Linux&is_docker=False&is_singularity=False&is_conda=False&is_uv=False&is_ci=False&is_notebook=False&ai_summary=False&ai_summary_full=False&ai_provider=seqera HTTP/1.1" 200 178
+[2026-07-09 11:37:54,395] multiqc.core.version_check                         [DEBUG  ]  Latest MultiQC version is v1.35, released 2026-05-13
+[2026-07-09 11:37:54,395] multiqc.multiqc                                    [DEBUG  ]  Working dir : /home/sa_110818210310663084911/results/qc_trim_pipeline
+[2026-07-09 11:37:54,395] multiqc.multiqc                                    [DEBUG  ]  Template    : default
+[2026-07-09 11:37:54,397] multiqc.multiqc                                    [DEBUG  ]  Command used: /home/sa_110818210310663084911/.local/lib/python3.11/site-packages/multiqc/__main__.py /home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/qc_trimmed -o /home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/multiqc -f
+[2026-07-09 11:37:54,397] multiqc.core.file_search                           [INFO   ]  Search path: /home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/qc_trimmed
+[2026-07-09 11:37:54,398] multiqc.core.file_search                           [DEBUG  ]  Analysing modules: bases2fastq, cellranger_arc, cells2stats, deacon, hicstuff, hifi_trimmer, methurator, ribotish, ribowaltz, riker, seqkit, sompy, xenium, custom_content, ccs, ngsderive, purple, conpair, isoseq, lima, peddy, percolator, haplocheck, somalier, methylqa, mosdepth, phantompeakqualtools, qualimap, bamdst, preseq, hifiasm, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, checkm, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, glimpse, gopeaks, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featurecounts, fgbio, dragen, dragen_fastqc, dedup, pbmarkdup, damageprofiler, mapdamage, biobambam2, jcvi, mtnucratio, picard, vep, bakta, prokka, checkm2, qc3C, nanoq, nanostat, samblaster, samtools, bamtools, sambamba, ngsbits, pairtools, sexdeterrmine, seqera_cli, eigenstratdatabasetools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, umicollapse, umitools, truvari, megahit, sincei, ganon, gtdbtk, bbmap, bismark, biscuit, diamond, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, hostile, cellranger, checkatlas, snpsplit, odgi, vg, pangolin, nextclade, freyja, humid, kat, leehom, librarian, nonpareil, adapterremoval, bbduk, clipandmerge, cutadapt, trim_galore, flexbar, sourmash, kaiju, kraken, malt, motus, trimmomatic, sickle, skewer, sortmerna, biobloomtools, seqfu, fastq_screen, fastqe, afterqc, fastp, fastqc, sequali, filtlong, prinseqplusplus, pychopper, porechop, pycoqc, minionqc, anglerfish, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap, spaceranger, xenome, xengsort, metaphlan, sylphtax, seqwho, telseq, ataqv, mgikit, mosaicatcher, software_versions
+[2026-07-09 11:37:54,398] multiqc.core.file_search                           [DEBUG  ]  Search keys: adapterremoval, afterqc, anglerfish, ataqv, bakta, bamdst, bamtools, bases2fastq, bbduk, bbmap, bcftools, bcl2fastq, bclconvert, biobambam2, biobloomtools, biscuit, bismark, bowtie1, bowtie2, busco, bustools, ccs, cellranger, cellranger_arc, cells2stats, checkatlas, checkm, checkm2, checkqc, clipandmerge, clusterflow, conpair, custom_content, cutadapt, damageprofiler, deacon, dedup, deeptools, diamond, disambiguate, dragen, dragen_fastqc, eigenstratdatabasetools, fastp, fastq_screen, fastqc, fastqe, featurecounts, fgbio, filtlong, flash, flexbar, freyja, ganon, gatk, gffcompare, glimpse, goleft_indexcov, gopeaks, gtdbtk, haplocheck, happy, hicexplorer, hicpro, hicstuff, hicup, hifi_trimmer, hifiasm, hisat2, homer, hops, hostile, htseq, humid, interop, isoseq, ivar, jcvi, jellyfish, kaiju, kallisto, kat, kraken, leehom, librarian, lima, longranger, macs2, malt, mapdamage, megahit, metaphlan, methurator, methylqa, mgikit, minionqc, mirtop, mirtrace, mosaicatcher, mosdepth, motus, mtnucratio, multiqc_data, multivcfanalyzer, nanoq, nanostat, nextclade, ngsbits, ngsderive, nonpareil, odgi, optitype, pairtools, pangolin, pbmarkdup, peddy, percolator, phantompeakqualtools, picard, porechop, preseq, prinseqplusplus, prokka, purple, pychopper, pycoqc, qc3C, qorts, qualimap, quast, ribotish, ribowaltz, riker, rna_seqc, rockhopper, rsem, rseqc, salmon, sambamba, samblaster, samtools, sargasso, seqera_cli, seqfu, seqkit, sequali, seqwho, seqyclean, sexdeterrmine, sickle, sincei, skewer, slamdunk, snippy, snpeff, snpsplit, software_versions, somalier, sompy, sortmerna, sourmash, spaceranger, stacks, star, supernova, sylphtax, telseq, theta2, tophat, trim_galore, trimmomatic, truvari, umicollapse, umitools, varscan2, vcftools, vep, verifybamid, vg, whatshap, xengsort, xenium, xenome
+[2026-07-09 11:37:55,821] multiqc.report                                     [DEBUG  ]  Summary of files that were skipped by the search: |skipped_module_specific_max_filesize: 70|, |skipped_no_match: 70|
+[2026-07-09 11:37:55,824] multiqc.core.exec_modules                          [DEBUG  ]  Running module: custom_content
+[2026-07-09 11:37:55,827] multiqc.core.exec_modules                          [DEBUG  ]  No samples found: custom_content
+[2026-07-09 11:37:55,827] multiqc.core.exec_modules                          [DEBUG  ]  Running module: fastqc
+[2026-07-09 11:37:56,172] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 70 reports
+[2026-07-09 11:37:56,217] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_counts_plot: found old_data = False
+[2026-07-09 11:37:56,217] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_counts_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,455] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_sequence_quality_plot: found old_data = False
+[2026-07-09 11:37:56,455] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_sequence_quality_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,481] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_quality_scores_plot: found old_data = False
+[2026-07-09 11:37:56,481] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_quality_scores_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,609] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_gc_content_plot: found old_data = False
+[2026-07-09 11:37:56,609] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_sequence_gc_content_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,659] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_n_content_plot: found old_data = False
+[2026-07-09 11:37:56,659] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_per_base_n_content_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,682] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_length_distribution_plot: found old_data = False
+[2026-07-09 11:37:56,683] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_length_distribution_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,700] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_duplication_levels_plot: found old_data = False
+[2026-07-09 11:37:56,700] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_sequence_duplication_levels_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,714] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_overrepresented_sequences_plot: found old_data = False
+[2026-07-09 11:37:56,714] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_overrepresented_sequences_plot: no old data or empty, using new data only
+[2026-07-09 11:37:56,725] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_top_overrepresented_sequences_table: found old_data = False
+[2026-07-09 11:37:56,725] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc_top_overrepresented_sequences_table: no old data or empty, using new data only
+[2026-07-09 11:37:56,768] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc-status-check-heatmap: found old_data = False
+[2026-07-09 11:37:56,768] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for fastqc-status-check-heatmap: no old data or empty, using new data only
+[2026-07-09 11:37:56,797] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_fastqc.txt
+[2026-07-09 11:37:56,799] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_fastqc.json
+[2026-07-09 11:37:56,803] multiqc.base_module                                [DEBUG  ]  fastqc: deleting attribute self.order_of_duplication_levels
+[2026-07-09 11:37:56,803] multiqc.base_module                                [DEBUG  ]  fastqc: deleting attribute self.status_colours
+[2026-07-09 11:37:56,803] multiqc.core.software_versions                     [DEBUG  ]  Reading software versions from config.software_versions
+[2026-07-09 11:37:56,805] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_software_versions.txt
+[2026-07-09 11:37:56,805] multiqc.core.write_results                         [DEBUG  ]  Rendering plots
+[2026-07-09 11:37:56,833] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for general_stats_table: found old_data = False
+[2026-07-09 11:37:56,833] multiqc.plots.plot                                 [DEBUG  ]  merge_with_previous for general_stats_table: no old data or empty, using new data only
+[2026-07-09 11:37:56,871] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_general_stats.txt
+[2026-07-09 11:37:56,872] multiqc.report                                     [DEBUG  ]  Wrote data file multiqc_general_stats.json
+[2026-07-09 11:37:56,903] multiqc.core.ai                                    [DEBUG  ]  Saved AI prompt to multiqc_data/llms-full.txt
+[2026-07-09 11:37:56,903] multiqc.core.write_results                         [DEBUG  ]  Exporting plot data to files
+[2026-07-09 11:37:56,904] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_sequence_counts_plot.txt
+[2026-07-09 11:37:56,912] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_base_sequence_quality_plot.txt
+[2026-07-09 11:37:56,913] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_sequence_quality_scores_plot.txt
+[2026-07-09 11:37:56,923] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_sequence_gc_content_plot_Percentages.txt
+[2026-07-09 11:37:56,933] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_sequence_gc_content_plot_Counts.txt
+[2026-07-09 11:37:56,939] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_per_base_n_content_plot.txt
+[2026-07-09 11:37:56,942] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_sequence_length_distribution_plot.txt
+[2026-07-09 11:37:56,944] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_sequence_duplication_levels_plot.txt
+[2026-07-09 11:37:56,944] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_overrepresented_sequences_plot.txt
+[2026-07-09 11:37:56,944] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc_top_overrepresented_sequences_table.txt
+[2026-07-09 11:37:56,945] multiqc.report                                     [DEBUG  ]  Wrote data file fastqc-status-check-heatmap.txt
+[2026-07-09 11:37:56,945] multiqc.core.write_results                         [DEBUG  ]  Moving data file from '/tmp/tmpq5f02r9s/multiqc_data' to '/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJEB40348/multiqc/multiqc_data'
+[2026-07-09 11:37:57,285] multiqc.core.write_results                         [INFO   ]  Data        : PRJEB40348/multiqc/multiqc_data
+[2026-07-09 11:37:57,314] multiqc.core.write_results                         [DEBUG  ]  Compressing plot data
+[2026-07-09 11:37:57,618] multiqc.core.write_results                         [INFO   ]  Report      : PRJEB40348/multiqc/multiqc_report.html
