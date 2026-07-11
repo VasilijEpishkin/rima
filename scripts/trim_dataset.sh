@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 # trim_dataset.sh — Adapter trimming + QC for one dataset.
 #
-# Pipeline: fastp (adapter detect, Q30, minlen 250) → FastQC → MultiQC
+# Pipeline: cutadapt (Illumina TruSeq/Nextera) → fastp (auto-detect, Q30, len250)
+#            → FastQC → MultiQC
 # Результаты: results/<DS>/trimmed/{fastp_reports,fastqc,multiqc}
+#
+# cutadapt ПЕРВЫМ — ищет полную последовательность Illumina адаптера
+# (AGATCGGAAGAGCGGTTCAG) по всей длине рида, независимо от PE-оверлапа.
+# fastp потом дочищает остатки через PE-overlap + делает QC.
 #
 # Запуск:
 #   trim_dataset.sh <DATASET>              # сырые из gs://bioinformatics4/bioproject/<DS>/
@@ -12,23 +17,27 @@
 #   trim_dataset.sh PRJEB40348
 #   trim_dataset.sh PRJEB40348 /path/to/raw/fastqs
 #
-# Зависимости: fastp, fastqc, multiqc (python3 -m multiqc), gsutil (для GCS)
+# Зависимости: cutadapt, fastp, fastqc, multiqc (python3 -m multiqc), gsutil (для GCS)
 set -euo pipefail
 shopt -s nullglob
+
+export PATH="$HOME/.local/bin:$PATH"   # cutadapt живёт тут
 
 DS="${1:?usage: trim_dataset.sh <DATASET> [<SRC_DIR>]}"
 SRC="${2:-gs://bioinformatics4/bioproject/$DS}"
 
 # --- пути ---
-BASE=~/results/qc_trim_pipeline/$DS          # рабочий каталог
-TRIM=$BASE/trim                               # fastp output
-FPR=$BASE/fastp_reports                       # fastp JSON/HTML отчёты
-FQC=$BASE/qc_trimmed                          # FastQC на trimmed
-MQC=$BASE/multiqc                             # MultiQC на trimmed
+ILL_ADAPTER=AGATCGGAAGAGCGGTTCAG       # полный Illumina TruSeq/Nextera адаптер
+BASE=~/results/qc_trim_pipeline/$DS    # рабочий каталог
+CUT=$BASE/cutadapt                     # cutadapt output (intermediate)
+TRIM=$BASE/trim                        # fastp output (final)
+FPR=$BASE/fastp_reports                # fastp JSON/HTML отчёты
+FQC=$BASE/qc_trimmed                   # FastQC на trimmed
+MQC=$BASE/multiqc                      # MultiQC на trimmed
 LOG=$BASE/trim_dataset.log
 
 echo "=== [$(date -u)] trim_dataset: $DS ===" | tee "$LOG"
-mkdir -p "$TRIM" "$FPR" "$FQC" "$MQC"
+mkdir -p "$CUT" "$TRIM" "$FPR" "$FQC" "$MQC"
 
 # --- 0. Получить сырые FASTQ ---
 LOCALDATA=$BASE/raw
@@ -52,7 +61,7 @@ NPAIR=$(echo "$PAIRS" | grep -c . 2>/dev/null || echo 0)
 echo "[$DS] found $NPAIR pairs" | tee -a "$LOG"
 [ "$NPAIR" -gt 0 ] || { echo "[$DS] no pairs found, abort" | tee -a "$LOG"; exit 1; }
 
-# --- 2. fastp: adapter detect + Q30 + minlen 250 (no -u = default 40%) ---
+# --- 2. cutadapt (адаптер) → fastp (QC + фильтр) ---
 for base in $PAIRS; do
   r1="$LOCALDATA/${base}_1.fastq.gz"
   r2="$LOCALDATA/${base}_2.fastq.gz"
@@ -62,15 +71,29 @@ for base in $PAIRS; do
   [ -f "$TRIM/${base}_1.trim.fastq.gz" ] && {
     echo "  $base already done, skip" | tee -a "$LOG"; continue; }
 
+  # --- cutadapt: точное удаление Illumina адаптера ---
+  echo "  [$base] cutadapt ..." | tee -a "$LOG"
+  cutadapt -a "$ILL_ADAPTER" -A "$ILL_ADAPTER" \
+    --compression-level 1 \
+    -o "$CUT/${base}_1.cut.fastq.gz" \
+    -p "$CUT/${base}_2.cut.fastq.gz" \
+    "$r1" "$r2" \
+    >> "$LOG" 2>&1
+
+  # --- fastp: авто-детект остатков + Q30 + minlen 250 ---
   echo "  [$base] fastp ..." | tee -a "$LOG"
-  fastp -i "$r1" -I "$r2" \
+  fastp -i "$CUT/${base}_1.cut.fastq.gz" \
+    -I "$CUT/${base}_2.cut.fastq.gz" \
     -o "$TRIM/${base}_1.trim.fastq.gz" \
     -O "$TRIM/${base}_2.trim.fastq.gz" \
     --detect_adapter_for_pe -q 30 -l 250 -w 8 \
     -h "$FPR/${base}.html" -j "$FPR/${base}.json" \
     >> "$LOG" 2>&1
+
+  # чистим intermediate (cutadapt output уже не нужен)
+  rm -f "$CUT/${base}_1.cut.fastq.gz" "$CUT/${base}_2.cut.fastq.gz"
 done
-echo "[$DS] fastp done" | tee -a "$LOG"
+echo "[$DS] cutadapt + fastp done" | tee -a "$LOG"
 
 # --- 3. FastQC на trimmed ---
 echo "[$DS] FastQC ..." | tee -a "$LOG"
@@ -81,6 +104,9 @@ echo "[$DS] FastQC done: $(ls "$FQC"/*_fastqc.html 2>/dev/null | wc -l) reports"
 echo "[$DS] MultiQC ..." | tee -a "$LOG"
 cd "$BASE" && python3 -m multiqc "$FQC" -o "$MQC" -f >> "$LOG" 2>&1
 echo "[$DS] MultiQC done: $(ls "$MQC"/*.html 2>/dev/null)" | tee -a "$LOG"
+
+# --- 5. Убрать пустой cutadapt/ ---
+rmdir "$CUT" 2>/dev/null || true
 
 echo "=== [$(date -u)] trim_dataset: $DS COMPLETE ===" | tee -a "$LOG"
 echo "  trimmed:    $TRIM/"
