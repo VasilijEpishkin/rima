@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 134 pack
+Read1 pack size: 1000
+Read2 pack size: 746
+
+Read1 before filtering:
+total reads: 134746
+total bases: 35275360
+Q20 bases: 34687820(98.3344%)
+Q30 bases: 33276779(94.3343%)
+
+Read2 before filtering:
+total reads: 134746
+total bases: 35241241
+Q20 bases: 30917763(87.7318%)
+Q30 bases: 26451196(75.0575%)
+
+Read1 after filtering:
+total reads: 122225
+total bases: 32023150
+Q20 bases: 31496398(98.3551%)
+Q30 bases: 30221703(94.3745%)
+
+Read2 after filtering:
+total reads: 122225
+total bases: 31995968
+Q20 bases: 28354158(88.6179%)
+Q30 bases: 24468107(76.4725%)
+
+Filtering result:
+reads passed filter: 244450
+reads failed due to low quality: 21506
+reads failed due to too many N: 0
+reads failed due to too short: 3536
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0.175144%
+
+Insert size peak (evaluated by paired-end reads): 300
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588269.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588269.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588269_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588269_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588269_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588269_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588269.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588269.json 
+fastp v0.23.2, time used: 75 seconds

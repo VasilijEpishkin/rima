@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 58 pack
+Read1 pack size: 548
+Read2 pack size: 1000
+
+Read1 before filtering:
+total reads: 62548
+total bases: 16342127
+Q20 bases: 15945664(97.574%)
+Q30 bases: 15083782(92.3%)
+
+Read2 before filtering:
+total reads: 62548
+total bases: 16323222
+Q20 bases: 14179237(86.8654%)
+Q30 bases: 12191155(74.686%)
+
+Read1 after filtering:
+total reads: 54448
+total bases: 14280109
+Q20 bases: 13933955(97.576%)
+Q30 bases: 13177631(92.2796%)
+
+Read2 after filtering:
+total reads: 54448
+total bases: 14259923
+Q20 bases: 12467413(87.4297%)
+Q30 bases: 10784356(75.627%)
+
+Filtering result:
+reads passed filter: 108896
+reads failed due to low quality: 9198
+reads failed due to too many N: 0
+reads failed due to too short: 7002
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0.749824%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588255.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588255.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588255_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588255_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588255_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588255_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588255.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588255.json 
+fastp v0.23.2, time used: 29 seconds

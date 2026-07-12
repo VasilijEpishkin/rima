@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 2 pack
+Read1 pack size: 233
+Read2 pack size: 450
+
+Read1 before filtering:
+total reads: 4233
+total bases: 1125685
+Q20 bases: 1106877(98.3292%)
+Q30 bases: 1050782(93.346%)
+
+Read2 before filtering:
+total reads: 4233
+total bases: 1121924
+Q20 bases: 912114(81.2991%)
+Q30 bases: 777615(69.3108%)
+
+Read1 after filtering:
+total reads: 3654
+total bases: 973950
+Q20 bases: 957675(98.329%)
+Q30 bases: 908875(93.3184%)
+
+Read2 after filtering:
+total reads: 3654
+total bases: 970821
+Q20 bases: 797715(82.1691%)
+Q30 bases: 684434(70.5005%)
+
+Filtering result:
+reads passed filter: 7308
+reads failed due to low quality: 924
+reads failed due to too many N: 0
+reads failed due to too short: 234
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588286.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588286.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588286_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588286_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588286_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588286_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588286.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588286.json 
+fastp v0.23.2, time used: 1 seconds

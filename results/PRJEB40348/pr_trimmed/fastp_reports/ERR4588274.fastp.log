@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 91 pack
+Read1 pack size: 1000
+Read2 pack size: 130
+
+Read1 before filtering:
+total reads: 91130
+total bases: 23836150
+Q20 bases: 22976075(96.3917%)
+Q30 bases: 21391612(89.7444%)
+
+Read2 before filtering:
+total reads: 91130
+total bases: 23785486
+Q20 bases: 19551301(82.1985%)
+Q30 bases: 16251042(68.3234%)
+
+Read1 after filtering:
+total reads: 74958
+total bases: 19621606
+Q20 bases: 18917278(96.4104%)
+Q30 bases: 17616124(89.7792%)
+
+Read2 after filtering:
+total reads: 74958
+total bases: 19582640
+Q20 bases: 16389520(83.6941%)
+Q30 bases: 13787338(70.4059%)
+
+Filtering result:
+reads passed filter: 149916
+reads failed due to low quality: 30224
+reads failed due to too many N: 0
+reads failed due to too short: 2120
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0.469659%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588274.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588274.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588274_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588274_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588274_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588274_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588274.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588274.json 
+fastp v0.23.2, time used: 29 seconds

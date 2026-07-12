@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 38 pack
+Read1 pack size: 1000
+Read2 pack size: 949
+
+Read1 before filtering:
+total reads: 42949
+total bases: 11226694
+Q20 bases: 11069941(98.6037%)
+Q30 bases: 10652394(94.8845%)
+
+Read2 before filtering:
+total reads: 42949
+total bases: 11220271
+Q20 bases: 10051480(89.5832%)
+Q30 bases: 8693170(77.4774%)
+
+Read1 after filtering:
+total reads: 39848
+total bases: 10427861
+Q20 bases: 10284505(98.6253%)
+Q30 bases: 9898334(94.922%)
+
+Read2 after filtering:
+total reads: 39848
+total bases: 10424741
+Q20 bases: 9399096(90.1614%)
+Q30 bases: 8178596(78.4537%)
+
+Filtering result:
+reads passed filter: 79696
+reads failed due to low quality: 4594
+reads failed due to too many N: 0
+reads failed due to too short: 1608
+reads with adapter trimmed: 2
+bases trimmed due to adapters: 88
+
+Duplication rate: 0.47731%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588282.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588282.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588282_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588282_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588282_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588282_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588282.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588282.json 
+fastp v0.23.2, time used: 33 seconds

@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 50 pack
+Read1 pack size: 1000
+Read2 pack size: 437
+
+Read1 before filtering:
+total reads: 54437
+total bases: 14249637
+Q20 bases: 13992859(98.198%)
+Q30 bases: 13345058(93.6519%)
+
+Read2 before filtering:
+total reads: 54437
+total bases: 14244934
+Q20 bases: 12472275(87.5559%)
+Q30 bases: 10823413(75.9808%)
+
+Read1 after filtering:
+total reads: 50516
+total bases: 13233168
+Q20 bases: 12998608(98.2275%)
+Q30 bases: 12400487(93.7076%)
+
+Read2 after filtering:
+total reads: 50516
+total bases: 13230373
+Q20 bases: 11659086(88.1236%)
+Q30 bases: 10188996(77.0122%)
+
+Filtering result:
+reads passed filter: 101032
+reads failed due to low quality: 6480
+reads failed due to too many N: 0
+reads failed due to too short: 1362
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0.400463%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588279.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588279.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588279_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588279_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588279_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588279_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588279.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588279.json 
+fastp v0.23.2, time used: 22 seconds
