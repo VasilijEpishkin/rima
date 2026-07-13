@@ -1,6 +1,6 @@
 
-# Large raw sequencing data (do not commit; lives in GCS)
-data/
-
-# Local secrets (already tracked — see history; ignored to prevent future re-adds)
 .env
+# Large raw sequencing data (do not commit; lives in GCS)
+# Local secrets (already tracked — see history; ignored to prevent future re-adds)
+data/
+scripts/__pycache__/
