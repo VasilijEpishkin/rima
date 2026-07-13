@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # adapter_trim.sh — cutadapt (Illumina адаптер) + fastp (Q30, minlen).
 #
-# Только адаптер-тримминг и фильтрация. FastQC/MultiQC — отдельный шаг (qc_raw.sh).
+# Только адаптер-тримминг и фильтрация. FastQC/MultiQC — отдельный шаг (qc.sh).
 #
 # Pipeline: cutadapt (TruSeq/Nextera адаптер по всей длине рида)
 #           → fastp (авто-детект остатков, Q30, minlen 250, 8 потоков)
