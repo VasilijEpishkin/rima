@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 50 pack
+Read1 pack size: 1000
+Read2 pack size: 992
+
+Read1 before filtering:
+total reads: 54992
+total bases: 14409571
+Q20 bases: 14084324(97.7428%)
+Q30 bases: 13309805(92.3678%)
+
+Read2 before filtering:
+total reads: 54992
+total bases: 14402096
+Q20 bases: 12456843(86.4933%)
+Q30 bases: 10769015(74.7739%)
+
+Read1 after filtering:
+total reads: 50397
+total bases: 13216824
+Q20 bases: 12922781(97.7752%)
+Q30 bases: 12217403(92.4383%)
+
+Read2 after filtering:
+total reads: 50397
+total bases: 13213320
+Q20 bases: 11508882(87.1006%)
+Q30 bases: 10026331(75.8805%)
+
+Filtering result:
+reads passed filter: 100794
+reads failed due to low quality: 7586
+reads failed due to too many N: 0
+reads failed due to too short: 1604
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0.138202%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588277.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588277.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588277_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588277_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588277_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588277_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588277.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588277.json 
+fastp v0.23.2, time used: 24 seconds

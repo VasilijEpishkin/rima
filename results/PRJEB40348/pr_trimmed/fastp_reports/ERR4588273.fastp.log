@@ -1,0 +1,52 @@
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+
+WARNNIG: different read numbers of the 58 pack
+Read1 pack size: 1000
+Read2 pack size: 246
+
+Read1 before filtering:
+total reads: 64246
+total bases: 16804851
+Q20 bases: 16216394(96.4983%)
+Q30 bases: 15122271(89.9875%)
+
+Read2 before filtering:
+total reads: 64246
+total bases: 16775538
+Q20 bases: 13702050(81.6788%)
+Q30 bases: 11364003(67.7415%)
+
+Read1 after filtering:
+total reads: 50518
+total bases: 13238699
+Q20 bases: 12774700(96.4951%)
+Q30 bases: 11909210(89.9576%)
+
+Read2 after filtering:
+total reads: 50518
+total bases: 13218697
+Q20 bases: 11003830(83.2444%)
+Q30 bases: 9236205(69.8723%)
+
+Filtering result:
+reads passed filter: 101036
+reads failed due to low quality: 23818
+reads failed due to too many N: 0
+reads failed due to too short: 3638
+reads with adapter trimmed: 2
+bases trimmed due to adapters: 78
+
+Duplication rate: 0.0684868%
+
+Insert size peak (evaluated by paired-end reads): 0
+
+JSON report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588273.json
+HTML report: /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588273.html
+
+fastp -i /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588273_1.pr_primers-pass.fastq.gz -I /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588273_2.pr_primers-pass.fastq.gz -o /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588273_1.pr.fastq.gz -O /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastq/ERR4588273_2.pr.fastq.gz -q 30 -l 250 --detect_adapter_for_pe -w 4 -h /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588273.html -j /home/sa_110818210310663084911/rima_clone/results/PRJEB40348/pr_trimmed/fastp_reports/ERR4588273.json 
+fastp v0.23.2, time used: 32 seconds
