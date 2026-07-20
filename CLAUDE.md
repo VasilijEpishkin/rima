@@ -61,6 +61,17 @@ Available via MCP: `gitnexus_impact()`, `gitnexus_query()`, `gitnexus_context()`
 
 **Total:** ~30 GiB in `gs://bioinformatics4/bioproject/`
 
+### Dataset → Primary Source (verified 2026-07-18)
+
+| Accession | Organism | Primary source | Verification |
+|-----------|----------|----------------|-------------|
+| PRJNA848968 | Horse | Rosenfeld R et al. (2022). *Centaur antibodies: Engineered chimeric equine-human recombinant antibodies.* Front. Immunol. 13:942317. **PMID 36059507**, doi:10.3389/fimmu.2022.942317 | ✅ VERIFIED — `PRJNA848968` cited in paper's Data Availability (PMC9437483); BioProject description matches abstract verbatim; submitter = Israel Institute for Biological Research |
+| PRJNA900592 | Sheep | Park M, de Villavicencio Diaz TN, Lange V, Wu L, Le Bihan T, Ma B (2023). *Exploring the sheep (Ovis aries) immunoglobulin repertoire by next generation sequencing.* Mol. Immunol. 156:20–30. **PMID 36867981**, doi:10.1016/j.molimm.2023.02.008 | 🟡 Strong — BioProject description matches abstract verbatim (4 healthy sheep, IGH/IGK/IGL, NGS CDR3); submitter = Rapid Novor Inc. NCBI has no formal BioProject→PubMed link (elink empty) |
+| PRJEB40348 (E-MTAB-9573) | Human | Lomakin YA et al. (2022). *Deconvolution of B cell receptor repertoire in multiple sclerosis patients revealed a delay in tBreg maturation.* Front. Immunol. 13:803229. **PMID 36052064**, doi:10.3389/fimmu.2022.803229; AND Lomakin YA et al. (2022). *Multiple Sclerosis Is Associated with Immunoglobulin Germline Gene Variation of Transitional B Cells.* Acta Naturae 14(4):84–93. **PMID 36694905**, doi:10.32607/actanaturae.11794 | 🟡 Strong — papers describe exact cohort (CD19⁺CD24ʰⁱᵍʰCD38ʰⁱᵍʰ tBreg, 5 HAMS + 4 BMS + 6 HD, VH/VL NGS); same authors/institutes (Lomakin, Gabibov, IBCh RAS / Research Center of Neurology, Moscow). **NOTE:** papers cite **E-MTAB-10859**, not E-MTAB-9573 — E-MTAB-9573 (first public 2020-09-24) is the raw-read sibling of the processed E-MTAB-10859 cited in the 2022 papers. No separate 2020–21 publication exists for this cohort. |
+| PRJNA1247978 | Macaque | **No associated publication.** Data-only submission, Duke University, first public 2025-04-09 (60 runs, SRR33022240…), grant R01 AI128832. Europe PMC & NCBI elink return nothing. | ⚪ No paper — do NOT cite Rosenfeld 2019 as the "source"; it is at most a methodological antecedent, not referenced by the BioProject |
+
+**Caveat:** NCBI `elink` (BioProject→PubMed) returns empty for ALL three NCBI projects — links rest on description/organization matches, except Horse which has a direct in-paper citation of `PRJNA848968`.
+
 ### Pipeline Design
 
 **Stage A — Ground-truth reference DB:**
