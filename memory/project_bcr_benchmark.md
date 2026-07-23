@@ -74,6 +74,15 @@ primate's source article couldn't be confirmed unambiguously. Both were replaced
 
 **Caveat:** NCBI `elink` (BioProject→PubMed) returns empty for ALL three NCBI projects — links rest on description/organization matches, except Horse which has a direct in-paper citation of `PRJNA848968`.
 
+**NotebookLM cross-check (2026-07-20):** Notebook "Antibody Structure and Function for Therapeutic Engineering" (27 source files) queried to map file→dataset. Horse → `fimmu-13-942317.pdf` (✅ exact PRJNA848968 citation); Sheep → `1-s2.0-S0161589023000305-main.pdf` (✅ PRJNA900592); Human → `fimmu-13-803229.pdf` + `11794-10511-1-PB.pdf` + `ENA Browser` (🟡, cite E-MTAB-10859 not 9573); **Macaque → NO matching file exists** — NotebookLM confabulated `Multi-compartmental diversification of neutralizing antibody lineages dissected in SARS-CoV-2 spike-immunized macaques` (Mandolesi 2024, deposits ERR12544449–ERR12544478 — a *different* macaque study) and `rosenfeld2019.pdf` (primer-set methods paper, no link to PRJNA1247978). Confirms PRJNA1247978 is publication-less.
+
+**NotebookLM MD notes (verified 2026-07-20):** User moved 4 markdown notes into notebook sources (now 31 sources total). All 4 studied:
+- **Human** «Протокол секвенирования репертуаров антител человека на платформе Illumina MiSeq» → confirms **PRJEB40348 / ERP123974**; MiSeq 2×300 bp; Cheng 2011 universal set (15 VH fwd + 4 JH rev); MMLV RT; MiXCR clonotyping; FACS CD19⁺CD24ʰⁱᵍʰCD38ʰⁱᵍʰ (tBreg); SHM vs germline.
+- **Horse** «Анализ антител лошади: система EquPD v2020 и профилирование MiSeq» → confirms **PRJNA848968** (explicit note line); EquPD v2020 custom panel (35 primers: 7 VH-f/2 VH-r, 7 Vκ-f/4 Vκ-r, 13 Vλ-f/2 Vλ-r); MiSeq 2×300; scFv phage display; pRESTO + IMGT/HighV-QUEST + Change-O.
+- **Sheep** «Анализ иммуноглобулинового репертуара овец методом 5' RACE и NGS» → confirms **PRJNA900592** (+SUB12234127, SUB12276555); 5' RACE (SMARTer, universal anchor, no V-gene-specific fwd); MiSeq 2×300 (600 cycles), 30% PhiX; genespecific rev Sh_IGHG_rev_1 / Sh_IGKC_rev_1 / Sh_IGLC_rev_1.
+- **Macaque** «Анализ B-клеточного репертуара макаки-резус: протокол и набор праймеров v2018» → **METHODS ONLY** (Rosenfeld 2019 v2018 primer set for rhesus V-genes); **NO PRJNA1247978 reference**. Confirms PRJNA1247978 publication-less; the macaque note is a primer-design reference, not a dataset description.
+Note: MD notes are reproducible pipeline specs (primer sets, platforms, read lengths) — directly usable for Stage B simulation design.
+
 This is now 4 organisms (human, horse, sheep, macaque), exceeding the "minimum 3
 mammals" criterion. Reference `results/bcr_datasets_candidates_with_violations.xlsx`
 for the 7 other candidates considered and rejected (with specific violation reasons
@@ -258,3 +267,71 @@ Next session: batch remaining VM fixes into as few SSH calls as possible.
   crash on the first attempt)
 - CLAUDE.md — also documents most of the above; keep both in sync if
   updating either
+## Session Update — 2026-07-22 — PRJEB40348 adapter/MID trim and QC
+
+- Human `PRJEB40348` preprocessing on One-Q was updated and run.
+- NotebookLM/source-derived human technical sequences used: `A-key`, 6 possible `B-key + MID` variants, and platform adapter `AGATCGGAAGAGCGGTTCAG`.
+- Decision: do **not** trim VH/JH primers at adapter stage because multiplex-PCR primer trimming can remove V/J-informative bases; trim only technical keys/MIDs and platform adapter.
+- `adapter_trim.ipynb` on One-Q is now trim-only and cutadapt-only (no `fastp`, no QC generation inside trim notebook).
+- Current trim behavior: `cutadapt --quality-cutoff 0,30 -m 250 --times 2`, `-g/-G` for A-key and all 6 B-key+MID sequences, `-a/-A AGATCGGAAGAGCGGTTCAG` for platform adapter.
+- Human trim completed successfully: 35 paired FASTQ runs processed; 70 trimmed FASTQs written under `/data/user/epishkin/results/PRJEB40348/pr_trimmed/fastq`.
+- Cutadapt evidence from logs: platform adapter ~644k trims, A-key ~32k trims, one B-key+MID variant ~112k trims; other MID variants were zero, likely because ENA runs are already demultiplexed and only one MID is present per run.
+- Strict pre-merge `Q30 + minlen250` retained ~3.12M of ~16.11M read pairs (~19.3%); technically applied but biologically aggressive for MiSeq 2x300 BCR reconstruction.
+- `qc_trimmed` was rebuilt correctly as `FastQC + MultiQC` (not cutadapt-log MultiQC), so it is comparable to `qc_raw`.
+- Local reports updated under `/Users/epishkin/workspace/rima/results/PRJEB40348/qc_raw` and `/Users/epishkin/workspace/rima/results/PRJEB40348/qc_trimmed`.
+- QC interpretation: post-trim `Adapter Content` is `70/70 pass`; `Per Base Sequence Quality` improved but still shows terminal dips (`35 pass`, `18 warning`, `17 fail`), expected for MiSeq 2x300 and variable-length trimmed reads.
+- Recommendation / next step: check whether `pRESTO` is available in the `BCR Pipeline` kernel, install if missing, create `merge_pairs.ipynb`, run `pRESTO AssemblePairs` on `/data/user/epishkin/results/PRJEB40348/pr_trimmed/fastq`, then build `qc_merged` with merge rate, length distribution, Q30/expected-error metrics, and downstream VDJ suitability.
+
+## Session Update — 2026-07-22 — One-Q pRESTO + merge notebook
+
+- Correction: work for this stage must happen on One-Q / `BCR Pipeline`, not local macOS. A temporary local notebook draft was removed from the repo.
+- One-Q pRESTO check task `cce83f16-7ebd-48c4-af1d-7cdcab37b19e` showed pRESTO was missing: `AssemblePairs.py: NOT FOUND`, `ParseLog.py: NOT FOUND`, `presto module: NOT FOUND`.
+- Created `merge_pairs.ipynb` on the live One-Q Jupyter task at `/data/user/epishkin/one-q/41999da8-68f2-476f-8063-73694c2e04f3/merge_pairs.ipynb`; JSON validation passed in staging task `b172ec54-9503-42ad-9193-71366e8f24a9`.
+- Installed pRESTO into One-Q home with task `ad4d1ee6-848c-40a6-861b-ac8d32f840ec`: package `presto==0.7.9`; verification output included `/data/user/epishkin/.local/bin/AssemblePairs.py` and `presto module OK`.
+- Updated `merge_pairs.ipynb` in-place with task `02a66ff4-0f25-4292-9c2e-52cb6928c151` so the first cell prepends `/data/user/epishkin/.local/bin` to `PATH` and `/data/user/epishkin/.local/lib/python3.11/site-packages` to `sys.path` before checking/running pRESTO.
+- Notebook behavior: discovers both `*_1.pr.fastq.gz`/`*_2.pr.fastq.gz` and `*_1.trim.fastq.gz`/`*_2.trim.fastq.gz`; runs `AssemblePairs.py align --coord illumina --rc tail --failed`; writes outputs to `/data/user/epishkin/results/PRJEB40348/merged/{fastq,logs,qc}`; includes smoke-test cell, full-run cell, `assemble_manifest.tsv`, `assembly_qc.tsv`, and optional FastQC+MultiQC cell.
+
+### Correction — pRESTO must be installed in live task `/opt/conda/envs/bcr_env`
+
+- User clarified the active One-Q task `41999da8-68f2-476f-8063-73694c2e04f3` already has the real env at `/opt/conda/envs/bcr_env` (`conda env list` shows `bcr_env * /opt/conda/envs/bcr_env`). Separate `oneq start-task` jobs do **not** see that env; they only see `/opt/conda/bin/python3`, so installing from a separate batch image is not equivalent.
+- The earlier user-site install under `/data/user/epishkin/.local` and the attempted persistent env `/data/user/epishkin/conda/envs/bcr_env` are **not** the correct canonical setup for this task. Do not treat them as proof that live `BCR Pipeline` has pRESTO.
+- `merge_pairs.ipynb` was updated with task `7b940f6e-5a51-46af-acd9-3a27927bed0c` to add a first install/validation cell that must be run inside the live One-Q notebook. It uses `/opt/conda/envs/bcr_env/bin/python -m pip install --no-user presto` with `PYTHONNOUSERSITE=1`, then validates `pip show presto`, `sys.executable`, `purelib`, `scripts`, and `shutil.which("AssemblePairs.py")`.
+- `merge_pairs.ipynb` setup cell was then corrected with task `f11b056d-bceb-4dc7-9277-e11a598a52c4`: it now prepends only `/opt/conda/envs/bcr_env/bin` and `/opt/conda/envs/bcr_env/lib/python3.11/site-packages`; the previous `/data/user/epishkin/.local` shim was removed.
+- Direct execution in the live task via `oneq ssh-login` is currently blocked from this CLI because the SSH wrapper reports `Before running this command you need to run oneq init`; copying config to temp locations did not resolve it without exposing the One-Q token in command args. Therefore the correct install is staged as an executable notebook cell in the live task rather than silently run from a separate non-equivalent batch image.
+
+### Correction — new canonical One-Q task `f339ae2f-0bc7-4ac8-ba8c-acd09921ce0e`
+
+- User required a fresh single canonical task and strict work inside it. Started new One-Q Jupyter task `f339ae2f-0bc7-4ac8-ba8c-acd09921ce0e` with 4 CPU, 16G RAM, image `jupyter/base-notebook:latest`, ports 22/8888, mounted volume `cd232e9d-d23e-42e4-ae61-5a83964073bb=/mnt/cd232e9d-d23e-42e4-ae61-5a83964073bb`, labels `v100`, `amd64`, `jupyternotebook`, `cpu4`.
+- Current task host/ports: `host_name=volta7.bi.biocad.ru`, SSH port `31658`, Jupyter port `30286`; `one-q.biocad.ru:31658` refused connection, but direct host `volta7.bi.biocad.ru:31658` works. Use SSH as `user@volta7.bi.biocad.ru -p 31658` with One-Q key.
+- Inside the new task, initial `conda env list` showed only `base`; created real task-local env `/opt/conda/envs/bcr_env` via `conda create -n bcr_env python=3.11 pip ipykernel`.
+- Installed pRESTO correctly inside `/opt/conda/envs/bcr_env` with `PYTHONNOUSERSITE=1 python -m pip install --no-user --ignore-installed --force-reinstall presto`. Verified: `pip show presto` location `/opt/conda/envs/bcr_env/lib/python3.11/site-packages`; scripts `/opt/conda/envs/bcr_env/bin/AssemblePairs.py` and `/opt/conda/envs/bcr_env/bin/ParseLog.py` exist.
+- Copied notebooks from old task dir `/data/user/epishkin/one-q/41999da8-68f2-476f-8063-73694c2e04f3/` into new task dir `/data/user/epishkin/one-q/f339ae2f-0bc7-4ac8-ba8c-acd09921ce0e/`: `adapter_trim.ipynb`, `qc.ipynb`, `primer_trim.ipynb`, `merge_pairs.ipynb`; fixed ownership to `epishkin:users`.
+- Updated `merge_pairs.ipynb` setup cell to remove `/data/user/epishkin/.local` from `sys.path`, set `PYTHONNOUSERSITE=1`, prepend `/opt/conda/envs/bcr_env/bin`, and add `/opt/conda/envs/bcr_env/lib/python3.11/site-packages`. Verified by executing setup logic: `presto` imports from `/opt/conda/envs/bcr_env/lib/python3.11/site-packages/presto/__init__.py`, `AssemblePairs.py` resolves to `/opt/conda/envs/bcr_env/bin/AssemblePairs.py`, and user-site is absent from `sys.path`.
+- Removed the temporary install cell from `merge_pairs.ipynb`; the notebook is now ready for parameter discussion and later execution, not package installation.
+
+### Session Update — 2026-07-23 — toolchain, notebooks, cleanup in task `f339ae2f`
+
+- Continued strictly inside canonical One-Q task `f339ae2f-0bc7-4ac8-ba8c-acd09921ce0e` via SSH to `user@volta7.bi.biocad.ru -p 31658`; direct port on `one-q.biocad.ru` refused, but direct host node works.
+- Installed missing current-stage tools into `/opt/conda/envs/bcr_env` with conda/bioconda: `cutadapt 5.2`, `fastp 1.3.6`, `FastQC 0.12.1`, `MultiQC 1.35`. pRESTO remains correctly installed in the same env (`presto 0.7.9`). Verified paths: `/opt/conda/envs/bcr_env/bin/{cutadapt,fastp,fastqc,multiqc,AssemblePairs.py,ParseLog.py,MaskPrimers.py}`.
+- Future Stage A tools are **not installed in this new task**: `TRUST4/run-trust4`, `igrec.py`, `IgQUAST.py`, `iss`, and `Rscript` were not found. They existed on the old GCP VM, not in this fresh One-Q task.
+- Current notebooks exist in task UI directory `/data/user/epishkin/one-q/f339ae2f-0bc7-4ac8-ba8c-acd09921ce0e/`: `adapter_trim.ipynb`, `qc.ipynb`, `merge_pairs.ipynb`, `primer_trim.ipynb`; all JSON-valid and owned by `epishkin:users`.
+- Persistent volume notebook copies were synchronized to `/mnt/cd232e9d-d23e-42e4-ae61-5a83964073bb/common_access_folder/`: same 4 notebooks. `merge_pairs.ipynb` was newly created there because it was missing from the mounted volume.
+- Notebook updates: `adapter_trim.ipynb` is cutadapt-only and writes `results/<dataset>/pr_trimmed/fastq`; `qc.ipynb` no longer tries to install tools and supports `raw`, `pr_trimmed`/`trimmed`, and `merged`; `merge_pairs.ipynb` has BCR Pipeline kernel metadata and excludes `.local` user-site from `sys.path`; `primer_trim.ipynb` is marked optional/legacy because current decision is not to trim VH/JH primers before reconstruction.
+- Cleaned stale run outputs in both `/data/user/epishkin/results` and mounted volume `common_access_folder`: removed `trimmed`, `pr_trimmed`, `primer_trimmed`, `qc_trimmed`, `qc_pr_trimmed`, `merged`, `qc_merged`, plus old `nastyas_attempt/raw/trimmed*`. Preserved all `qc_raw` directories and raw data.
+
+### Recovery attempt — deleted `nastyas_attempt/raw/trimmed*`
+
+- User asked to restore `/mnt/cd232e9d-d23e-42e4-ae61-5a83964073bb/common_access_folder/nastyas_attempt/raw/trimmed` and `trimmed_Q`. Do **not** regenerate and call it a restore; exact workflow provenance is not proven.
+- Checked filesystem: mounted volume is CephFS (`findmnt` source `10.249.228.11:6789,...:/volumes/k8s-hpc-nova/...`, fstype `ceph`, 200G). This is not a local ext filesystem, so `debugfs`/`extundelete`/`testdisk` style undelete is not applicable from the task container.
+- Checked CephFS snapshot namespace: `.snap` exists but is empty at volume root, `common_access_folder`, `nastyas_attempt`, and `nastyas_attempt/raw`; `.snapshot`/`.snapshots` do not exist. No user-visible snapshot to copy from.
+- Checked trash/lost+found candidates near volume: none found. Checked copies across `/data/user/epishkin`, the mounted volume, `/data/stable`, `/app`: no copies of deleted `nastyas_attempt/raw/trimmed*` directories found; only raw FASTQ, raw FastQC/MultiQC, and unrelated trimmed MultiQC HTML remain.
+- Checked open deleted file handles via `/proc/*/fd`: `deleted_fd_count 0`; no deleted `nastyas_attempt`/`trimmed` files held open, so recovery via `/proc/<pid>/fd/<n>` is not possible.
+- Checked One-Q CLI capabilities: available volume commands are `volume-ls`, `volume-mk`, `volume-rm`, `volume-update`, `volume-scp`, `volume-login`, `volume-tree`; no user-facing snapshot/backup/restore command. Low-level `ceph`, `rados`, `rbd`, `getfattr`, `testdisk`, `photorec`, `extundelete` are not available in task; only `/usr/sbin/debugfs` exists but is irrelevant for CephFS.
+- Only remaining exact-restore path is One-Q/HPC/Ceph admin-side restore from backend CephFS snapshot/backup for volume `cd232e9d-d23e-42e4-ae61-5a83964073bb` / subvolume path `/volumes/k8s-hpc-nova/HPC-NOVA-default-37bdf0c5-df60-4454-8ccb-e152a36fdec4/ab85fcac-7ef8-4e84-9d58-d574914597d1`, before deletion at approximately 2026-07-23 07:27 UTC.
+
+### Directory convention correction — 2026-07-23
+
+- Corrected naming convention after user clarification: first-stage adapter/MID trimming output is `results/<DS>/trimmed/fastq`, not `pr_trimmed`. The `pr_trimmed` directory is reserved for optional primer-trimmed outputs.
+- QC directories: raw QC is `results/<DS>/qc_raw`; adapter/MID trim QC is `results/<DS>/qc_trimmed`; optional primer-trim QC is `results/<DS>/qc_pr_trimmed`; merged-read QC is `results/<DS>/qc_merged`.
+- Updated notebooks in both current task `/data/user/epishkin/one-q/f339ae2f-0bc7-4ac8-ba8c-acd09921ce0e/` and persistent volume `/mnt/cd232e9d-d23e-42e4-ae61-5a83964073bb/common_access_folder/`: `adapter_trim.ipynb` writes `*.trim.fastq.gz` to `results/<DS>/trimmed/fastq`; `qc.ipynb` maps label `trimmed` to `results/<DS>/trimmed/fastq` and writes `qc_trimmed`; `merge_pairs.ipynb` reads from `results/PRJEB40348/trimmed/fastq`; `primer_trim.ipynb` reads from `trimmed/fastq` and writes optional output to `pr_trimmed/fastq`.
+- Verified JSON validity and adapter path correction in both task and volume copies. `nastyas_attempt` is explicitly out of scope and must not be touched unless user explicitly asks.
