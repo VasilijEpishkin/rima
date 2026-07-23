@@ -1,6 +1,32 @@
-
 .env
-# Large raw sequencing data (do not commit; lives in GCS)
-# Local secrets (already tracked — see history; ignored to prevent future re-adds)
+
+# OS/editor noise
+.DS_Store
+**/.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Large raw sequencing data / local downloads
+# FASTQ lives on OneQ/ENA, not in git.
 data/
+raw/
+**/*.fastq
+**/*.fastq.gz
+**/*.fq
+**/*.fq.gz
+
+# Local OneQ/OpenScience state, credentials, staging, logs
+.oneq-home/
+.oneq-results-test/
+.oneq-stage-*/
+.openscience/
+oneq_known_hosts
+oneq_keypair_*/
+*.stdout.log
+remote_oneq_*.sh
+run_oneq_*.py
+tmp_run_oneq_*.py
+
+# Python/script caches
 scripts/__pycache__/

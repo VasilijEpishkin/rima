@@ -72,6 +72,15 @@ Available via MCP: `gitnexus_impact()`, `gitnexus_query()`, `gitnexus_context()`
 
 **Caveat:** NCBI `elink` (BioProject→PubMed) returns empty for ALL three NCBI projects — links rest on description/organization matches, except Horse which has a direct in-paper citation of `PRJNA848968`.
 
+**NotebookLM cross-check (2026-07-20):** Notebook "Antibody Structure and Function for Therapeutic Engineering" (27 source files) queried to map file→dataset. Horse → `fimmu-13-942317.pdf` (✅ exact PRJNA848968 citation); Sheep → `1-s2.0-S0161589023000305-main.pdf` (✅ PRJNA900592); Human → `fimmu-13-803229.pdf` + `11794-10511-1-PB.pdf` + `ENA Browser` (🟡, cite E-MTAB-10859 not 9573); **Macaque → NO matching file exists** — NotebookLM confabulated `Multi-compartmental diversification of neutralizing antibody lineages dissected in SARS-CoV-2 spike-immunized macaques` (Mandolesi 2024, deposits ERR12544449–ERR12544478 — a *different* macaque study) and `rosenfeld2019.pdf` (primer-set methods paper, no link to PRJNA1247978). Confirms PRJNA1247978 is publication-less.
+
+**NotebookLM MD notes (verified 2026-07-20):** User moved 4 markdown notes into notebook sources (now 31 sources total). All 4 studied:
+- **Human** «Протокол секвенирования репертуаров антител человека на платформе Illumina MiSeq» → confirms **PRJEB40348 / ERP123974**; MiSeq 2×300 bp; Cheng 2011 universal set (15 VH fwd + 4 JH rev); MMLV RT; MiXCR clonotyping; FACS CD19⁺CD24ʰⁱᵍʰCD38ʰⁱᵍʰ (tBreg); SHM vs germline.
+- **Horse** «Анализ антител лошади: система EquPD v2020 и профилирование MiSeq» → confirms **PRJNA848968** (explicit note line); EquPD v2020 custom panel (35 primers: 7 VH-f/2 VH-r, 7 Vκ-f/4 Vκ-r, 13 Vλ-f/2 Vλ-r); MiSeq 2×300; scFv phage display; pRESTO + IMGT/HighV-QUEST + Change-O.
+- **Sheep** «Анализ иммуноглобулинового репертуара овец методом 5' RACE и NGS» → confirms **PRJNA900592** (+SUB12234127, SUB12276555); 5' RACE (SMARTer, universal anchor, no V-gene-specific fwd); MiSeq 2×300 (600 cycles), 30% PhiX; genespecific rev Sh_IGHG_rev_1 / Sh_IGKC_rev_1 / Sh_IGLC_rev_1.
+- **Macaque** «Анализ B-клеточного репертуара макаки-резус: протокол и набор праймеров v2018» → **METHODS ONLY** (Rosenfeld 2019 v2018 primer set for rhesus V-genes); **NO PRJNA1247978 reference**. Confirms PRJNA1247978 publication-less; the macaque note is a primer-design reference, not a dataset description.
+Note: MD notes are reproducible pipeline specs (primer sets, platforms, read lengths) — directly usable for Stage B simulation design.
+
 ### Pipeline Design
 
 **Stage A — Ground-truth reference DB:**
