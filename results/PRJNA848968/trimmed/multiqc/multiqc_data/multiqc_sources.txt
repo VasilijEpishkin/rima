@@ -1,9 +1,0 @@
-Module	Section	Sample Name	Source
-FastQC	all_sections	SRR19646177_1	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646177_1.trim_fastqc.zip
-FastQC	all_sections	SRR19646177_2	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646177_2.trim_fastqc.zip
-FastQC	all_sections	SRR19646178_1	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646178_1.trim_fastqc.zip
-FastQC	all_sections	SRR19646178_2	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646178_2.trim_fastqc.zip
-FastQC	all_sections	SRR19646179_1	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646179_1.trim_fastqc.zip
-FastQC	all_sections	SRR19646179_2	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646179_2.trim_fastqc.zip
-FastQC	all_sections	SRR19646180_1	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646180_1.trim_fastqc.zip
-FastQC	all_sections	SRR19646180_2	/home/sa_110818210310663084911/results/qc_trim_pipeline/PRJNA848968/qc_trimmed/SRR19646180_2.trim_fastqc.zip
